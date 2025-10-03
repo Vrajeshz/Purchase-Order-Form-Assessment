@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Assessment: Purchase Order Form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a single-page **React application** that displays a form for creating a new Purchase Order. It is built with **create-react-app** and styled using **Bootstrap 5** and custom CSS for a specific design aesthetic.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## How to Use
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js (v14 or later)
+- npm (Node Package Manager) or yarn
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation & Setup
 
-### `npm test`
+1. Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   git clone <your-repository-url>
+   cd <your-project-directory>
+   ```
 
-### `npm run build`
+2. Install dependencies (React and other necessary packages):
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Running the Application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To view the application in your browser:
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This will open a new browser tab at **[http://localhost:3000](http://localhost:3000)**. The page will automatically reload if you make any changes to the source files.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Running Tests
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To run the pre-configured tests:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm test
+```
 
-## Learn More
+This will launch the test runner. The initial test in `App.test.js` will likely fail because the default _"learn react"_ text is not present in the `App.js` component.
+You can update this test to check for actual content, like the form’s header.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+- **public/index.html**: Main HTML file. Links Bootstrap 5 CSS and Bootstrap Icons via a CDN.
+- **src/App.js**: Main React component containing the entire form structure and layout.
+- **src/style.css**: Custom styles that give the form its unique look and feel, extending Bootstrap defaults.
+- **src/index.js**: Entry point for the React application.
+- **src/App.test.js**: Basic test file for the App component.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Key Logic and Approach
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 1. Component-Based Structure
 
-### Making a Progressive Web App
+The entire UI is built within a single functional React component (`App`).
+For larger applications, the **Talent Detail** block could be extracted into its own reusable component.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 2. Layout and Styling
 
-### Advanced Configuration
+The layout uses **Bootstrap 5 grid system** and **custom CSS**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Bootstrap 5**: Responsive grid system (`container-fluid`, `row`, `col-lg-3`, etc.).
+- **Custom CSS (style.css)**:
 
-### Deployment
+  - _Minimalist Inputs_: Main fields have full borders, while **Talent Detail** fields use a minimalist bottom border.
+  - _Visual Hierarchy_: Clear sectioning with headers, borders, and background colors to guide the user.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 3. Dynamic Elements
 
-### `npm run build` fails to minify
+The form supports multiple talents within a single purchase order:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **+ Add Another**: Intended to trigger a state update (e.g., using `useState`) to add new talent objects.
+- **Delete Icon**: Removes a talent block. Currently uses inline `onclick`; in a full React implementation, this would be replaced with a state update function.
+
+---
